@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    * {
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    h2 {
+        position: sticky;
+        top: 0;
+        background-color: rgba(227, 227, 227, 0.588);
+        padding: 10px;
+        border-radius: 10px;
+        margin: 0px;
+
+    }
+
+    .container {
+        width: 300px;
+        height: 350px;
+        overflow: scroll;
+        background-color: rgba(1, 5, 5, 0.633);
+        border-radius: 10px;
+        margin: auto;
+        padding: 0px;
+    }
+
+    #parentList {
+        padding: 0px;
+        padding-left: 7px;
+    }
+
+    li {
+        padding: 4px;
+        padding-left: 7px;
+        margin-left: 0px;
+        margin-bottom: 3px;
+        margin-right: 3px;
+        background-color: rgb(255, 236, 26);
+        display: inline-block;
+        width: 70%;
+        height: 30px;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    #delButton {
+        width: 68px;
+        height: 30px;
+        color: white;
+        background-color: rgb(255, 52, 52);
+        border-radius: 4px;
+    }
+
+    form {
+        position: fixed;
+        top: 344px;
+        background-color: grey;
+        padding:5px;
+        border-radius: 5px;
+        margin-left:0px;
+    }
+
+    #userInput {
+        height: 30px;
+        border-radius: 10px;
+    }
+
+    #userInput:focus{
+        transform: translateY(-1px);
+        transition-duration: 0.2s;
+    }
+
+    #submit {
+        width: 80px;
+        height: 35px;
+        border-radius: 8px;
+    }
+
+    #delButton:hover {
+        background-color: rgb(203, 0, 0);
+        transform: translateY(1px);
+    }
+
+    #submit:hover {
+        background-color: yellow;
+        transform: translateY(-2px);
+        transition-duration: 0.3s;
+    }
+
+    #submit:active {
+        background-color: rgb(207, 207, 0);
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>To do List</h2>
+        <ul id="parentList"></ul>
+        <form action="">
+            <input type="text" id="userInput">
+            <button type="submit" onclick="proses(event)" id="submit">submit</button>
+        </form>
+    </div>
+
+    <script>
+    function proses(e){
+        e.preventDefault();
+
+        let inputEl = document.getElementById("userInput").value;
+        if (inputEl === "") return;
+        
+        let input = inputEl;
+        let li = document.createElement('li');
+        li.textContent = input;
+        
+        let del = document.createElement('button');
+        del.textContent = 'Hapus';
+        del.id = 'delButton';
+        
+        del.onclick = function(){
+            document.getElementById('delButton');
+            li.remove();
+            del.remove();
+        }
+        
+        document.getElementById("parentList").appendChild(li);
+        document.getElementById('parentList').appendChild(del);
+        
+        li.scrollIntoView({behavior : 'smooth', block : 'end'});
+        document.getElementById('userInput').value = '';
+    }
+    </script>
+</body>
+</html>
